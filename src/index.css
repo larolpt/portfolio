@@ -3,25 +3,9 @@
 @tailwind utilities;
 
 .section{
-  @apply py-8 pl-40 lg:py-24 lg:h-screen flex items-center;
+  @apply py-8 px-6 md:px-16 lg:py-24 lg:h-screen flex items-center;
 } 
 
-body {
-  margin: 0;
-  height: 100vh;
-  background: linear-gradient(45deg, #707a83 0%, rgba(97, 130, 158, 0.5) 50%, #272e33 100%);
-  background-size: 200% 200%;  
-  animation: background 6s ease infinite;
-}
-
-@keyframes background { 
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+ion-icon {
+  color: white;
 }

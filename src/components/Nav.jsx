@@ -1,58 +1,53 @@
 
-import React from 'react';
+import {useState} from 'react';
 import logoLPT from '../assets/logoLPT.png';
 import {Link} from 'react-scroll';
+import '../index.css'
 
 const Nav = () => {
-    
+    let Links = [
+        {name:"Sobre mi", section:"home"},
+        {name:"Experiencia", section:"experiencia"},
+        {name:"Estudios", section:"estudios"},
+        {name:"Proyectos", section:"proyectos"}
+    ]
+    let [open,setOpen]=useState(false);
     return (
-    <nav className="bg-gray-800 md:h-screen md:w-40 px-4 py-8 flex flex-col justify-between fixed top-0 left-0">
-        <div className="flex items-center justify-center">
-            <img src={logoLPT} alt="Logo LPT" className="w-22 h-22" />
-        </div>
-        <div className="flex flex-col space-y-2">
-            <Link 
-                to='home'
-                activeClass='bg-gray-700 text-lg px-4 rounded'
-                smooth={true}
-                spy={true}
-                className='cursor-pointer text-white hover:bg-gray-700 hover:text-lg px-4 rounded'
-                >Home
-            </Link>
-            <Link 
-                to='experiencia'
-                activeClass='bg-gray-700 text-lg px-4 rounded'
-                smooth={true}
-                spy={true}
-                className='cursor-pointer text-white hover:bg-gray-700 hover:text-lg px-4 rounded'
-                >Experiencia
-            </Link>
-            <Link 
-                to='estudios'
-                activeClass='bg-gray-700 text-lg px-4 rounded'
-                smooth={true}
-                spy={true}
-                className='cursor-pointer text-white hover:bg-gray-700 hover:text-lg px-4 rounded'
-                >Estudios
-            </Link>
-            <Link 
-                to='proyectos'
-                activeClass='bg-gray-700 text-lg px-4 rounded'
-                smooth={true}
-                spy={true}
-                className='cursor-pointer text-white hover:bg-gray-700 hover:text-lg px-4 rounded'
-                >Proyectos
-            </Link>
-            <Link 
-                to='contacto'
-                activeClass='bg-gray-700 text-lg px-4 rounded'
-                smooth={true}
-                spy={true}
-                className='cursor-pointer text-white hover:bg-gray-700 hover:text-lg px-4 rounded'
-                >Contacto
-            </Link>
-        </div>
-        <div className="text-white text-sm mt-8">© {new Date().getFullYear()} Mi SPA. Todos los derechos reservados.</div>
+    
+    <nav className="shadow-md w-full fixed top-0 left-0">
+        <div className='items-center justify-between bg-gray-800 py-1 md:flex md:px-10 px-7'>
+            <div className='text-2xl cursor-pointer flex items-center'>
+                <img src={logoLPT} alt="Logo LPT" className=" w-[4rem] h-auto md:w-[6rem] "/>
+            </div>
+            <div onClick={()=>setOpen(!open)} className='text-3xl absolute right-8 top-2 cursor-pointer md:hidden'>
+                <ion-icon name={open ? 'close':'menu'}></ion-icon>
+            </div>
+
+            <ul className={`md:flex bg-gray-800 md:items-center md:pb-0 pb-4 absolute md:static md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 pl-9 transition-all duration-500 ease-in ${open ? 'top-8 ':'top-[-490px]'}`}>
+                {
+                    Links.map((a)=>(
+                        <li className='bg-gray-800 md:ml-8 md:text-xl md:my-0 my-7'>
+                            <Link 
+                                to={a.section}
+                                activeClass='bg-gray-700 px-4 text-sx rounded p-2 md:text-lg'
+                                smooth={true}
+                                spy={true}
+                                className='cursor-pointer text-white text-base hover:bg-gray-700 hover:text-lg px-4 rounded p-2'
+                                >{a.name}
+                            </Link>
+                        </li>
+                    ))
+                }
+                <Link 
+                    to="contacto"
+                    smooth={true}
+                    spy={true}
+                    className='bg-indigo-600 text-white py-2 px-6 rounded md:ml-8 hover:bg-indigo-400 
+                    duration-500'
+                    >Contacto
+                </Link>
+            </ul>   
+        </div>            
     </nav>
   );
 };
